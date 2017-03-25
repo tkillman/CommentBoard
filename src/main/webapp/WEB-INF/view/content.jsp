@@ -21,26 +21,19 @@
 				type : "post",
 				url : url,
 				data : data,
-				dataType : "json",
+				
 				success : function(arg) {
 					//console.log(arg.list);
 					$('#commentt').val("");
 					$('#commenter').val("");
 					$('#passwd').val("");
 					$('#tbody tr').remove();
-					console.log(arg.list.length)
 					
-					for (var i = 0; i < arg.list.length; i++) {
-						
-						
-						
-						$('#tbody:first').append(
-						"<tr><td colspan='5'>"+
-						"작성자 :" + arg.list[i].commenter +"아이피 : " +arg.list[i].commenter+"</td></tr>"+
-						"<tr><td colspan='5'>"+"코멘트 내용 : " +arg.list[i].commentt+"</td></tr>"
-						)
-					}
-
+					
+					$('#tbody').html(arg)
+					
+					
+					
 				}
 
 			})
@@ -119,7 +112,7 @@
 			<tbody id='tbody'>
 			<c:forEach var="co" items="${commentCommands}">
 			<tr>
-			<td colspan='5'>작성자 : ${co.commenter} + 아이피 : ${co.ip}</td>
+			<td colspan='2'>작성자 : ${co.commenter}</td><td colspan='3' style="text-align: 'right';"> 아이피 : ${co.ip}</td>
 			</tr>
 			<tr><td colspan='5'> 코멘트 내용 : ${co.commentt}</td></tr>
 			</c:forEach>			

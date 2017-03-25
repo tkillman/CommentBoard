@@ -4,9 +4,11 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,8 +30,9 @@ public class CommentController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@ResponseBody
-	public String jsonAct(HttpServletRequest request,CommentCommand commentCommand){
+	public String jsonAct(HttpServletResponse response,HttpServletRequest request,CommentCommand commentCommand,Model model){
+		
+		response.setContentType("text/html;charset=UTF-8");
 		
 		//코멘트 db 저장
 		commentCommand.setIp(request.getRemoteAddr());
@@ -37,19 +40,15 @@ public class CommentController {
 		
 		cDao.insertComment(commentCommand);
 		
+		
 		//코멘트 결과 보내주기
-		
-
-		JSONObject jso = new JSONObject();
-		
-		
+	
 		List<CommentCommand> list = cDao.selectList();
 		
-		jso.put("list", list);
+		model.addAttribute("list", list);
 		
 		
-		
-		return jso.toString();
+		return "comments";
 	}
 	
 	
