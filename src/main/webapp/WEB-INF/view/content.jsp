@@ -28,14 +28,17 @@
 					$('#commenter').val("");
 					$('#passwd').val("");
 					$('#tbody tr').remove();
-					
+					console.log(arg.list.length)
 					
 					for (var i = 0; i < arg.list.length; i++) {
+						
+						
+						
 						$('#tbody:first').append(
 						"<tr><td colspan='5'>"+
 						"작성자 :" + arg.list[i].commenter +"아이피 : " +arg.list[i].commenter+"</td></tr>"+
 						"<tr><td colspan='5'>"+"코멘트 내용 : " +arg.list[i].commentt+"</td></tr>"
-						);
+						)
 					}
 
 				}
@@ -113,7 +116,13 @@
 		
 			
 			<tr><td colspan="5">코멘트 목록<br></td></tr>
-			<tbody id="tbody">
+			<tbody id='tbody'>
+			<c:forEach var="co" items="${commentCommands}">
+			<tr>
+			<td colspan='5'>작성자 : ${co.commenter} + 아이피 : ${co.ip}</td>
+			</tr>
+			<tr><td colspan='5'> 코멘트 내용 : ${co.commentt}</td></tr>
+			</c:forEach>			
 			</tbody>
 			
 		</table>	

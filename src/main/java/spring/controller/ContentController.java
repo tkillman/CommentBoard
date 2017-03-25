@@ -1,5 +1,7 @@
 package spring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.Dao.BoardDao;
+import spring.Dao.CommentDao;
 import spring.Dto.CommentCommand;
 import spring.Dto.WriteFormCommand;
 
@@ -19,16 +22,34 @@ public class ContentController {
 	@Autowired
 	private BoardDao dao;
 	
+	@Autowired
+	private CommentDao cDao;
 	
 	public void setDao(BoardDao dao) {
 		this.dao = dao;
 	}
 	
+	
+	public void setcDao(CommentDao cDao) {
+		this.cDao = cDao;
+	}
+
+
+
+
 	@ModelAttribute("commentCommand")
 	public CommentCommand CommentCommandMake(){
+		
 		return new CommentCommand();
+		
 	}
 	
+	@ModelAttribute("commentCommands")
+	public List<CommentCommand> CommentCommandsMake(){
+		List<CommentCommand> commentCommands = cDao.selectList();
+		return commentCommands;
+		
+	}
 	
 	
 	
