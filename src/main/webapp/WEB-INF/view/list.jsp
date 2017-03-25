@@ -81,20 +81,17 @@
 
 <c:if test="${count > 0}">
    
-   <c:if test="${endPage > pageCount}">
-        <c:set var="endPage" value="${pageCount}"/>
-   </c:if>
          
    <c:if test="${startPage > 10}">
-        <a href="/MVC_board/MVC/list.do?pageNum=${startPage - 10 }">[이전]</a>
+        <a href="list.do?pageNum=${startPage - 10 }">[이전]</a>
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="/MVC_board/MVC/list.do?pageNum=${i}&searchValue=${searchValue}&selectName=${selectName}">[${i}]</a>
+       <a href="list.do?pageNum=${i}&searchValue=${searchValue}&selectName=${selectName}">[${i}]</a>
    </c:forEach>
 
    <c:if test="${endPage < pageCount}">
-        <a href="/MVC_board/MVC/list.do?pageNum=${startPage + 10}">[다음]</a>
+        <a href="list.do?pageNum=${startPage + 10}">[다음]</a>
    </c:if>
 </c:if>
 

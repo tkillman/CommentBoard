@@ -105,8 +105,8 @@ public class ListController {
 			endPage = pageCount;
 		}
 		
-		model.addAttribute(startPage);
-		model.addAttribute(endPage);
+		model.addAttribute("startPage",startPage);
+		model.addAttribute("endPage",endPage);
 		
 	}
 	

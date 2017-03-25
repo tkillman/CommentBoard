@@ -13,6 +13,7 @@ public class BoardDao extends SqlSessionDaoSupport{
 	
 	public int insertRecord(WriteFormCommand writeFormCommand){
 		
+
 		int resultNum =getSqlSession().insert("board.insert", writeFormCommand);
 		
 		return resultNum;
