@@ -11,7 +11,15 @@ insert into b_comment values(#{content_num},#{commenter},#{commentt},#{passwd},#
 </insert>
 
 <select id="getList" resultType="spring.Dto.CommentCommand">
-select commenter, commentt, ip  from b_comment 
+
+select commenter, commentt, ip
+from
+(
+select rowNum as r ,commenter, commentt, ip 
+from b_comment 
+order by comment_num desc
+)V
+order by V.r desc 
 </select>
 
 

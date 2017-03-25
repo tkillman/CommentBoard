@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	$(function() {
 
-		$('#btn').click(function() {
+		$('#btn').on('click',function() {
 
 			var url = "comment.do";
 			var data = $('#formId').serialize();
@@ -27,12 +27,14 @@
 					$('#commentt').val("");
 					$('#commenter').val("");
 					$('#passwd').val("");
-
+					$('#tbody tr').remove();
+					
+					
 					for (var i = 0; i < arg.list.length; i++) {
-						$('#resultLayout').append(
-						"<tr><td>"+
-						"작성자 :" + arg.list[i].commenter +"아이피 : " +arg.list[i].commenter +"<br>"
-						+"코멘트 내용 : " +arg.list[i].commentt+"</td></tr>"
+						$('#tbody:first').append(
+						"<tr><td colspan='5'>"+
+						"작성자 :" + arg.list[i].commenter +"아이피 : " +arg.list[i].commenter+"</td></tr>"+
+						"<tr><td colspan='5'>"+"코멘트 내용 : " +arg.list[i].commentt+"</td></tr>"
 						);
 					}
 
@@ -55,6 +57,7 @@
 		<b>글내용 보기</b> <br>
 		<table width="500" border="1" cellspacing="0" cellpadding="0"
 			align="center">
+		
 			<tr height="30">
 				<td align="center" width="125" bgcolor="${value_c}">글번호</td>
 				<td align="center" width="125" align="center">${article.num}</td>
@@ -95,21 +98,26 @@
 				<form:hidden path="comment_num" value="${comment_num}" />
 
 				<tr bgcolor="${value_c}">
-					<td>코멘트 작성</td>
+					<td colspan="2">코멘트 작성</td>
 					<td><form:textarea path="commentt" rows="6" cols="40" /></td>
 
-					<td colspan="2" align="center">작성자<br> <form:input
+					<td align="center">작성자<br> <form:input
 							path="commenter" size="10" /> <br> 비밀번호<br> <form:password
 							path="passwd" size="10" />
-						<p>
+						
 							<input type="button" id="btn" value="코멘트달기" /></td>
 				</tr>
 
 			</form:form>
-			<tr><td>코멘트 목록<br></td></tr>
-			<span id="resultLayout"></span>
-		</table>
-
+			
 		
+			
+			<tr><td colspan="5">코멘트 목록<br></td></tr>
+			<tbody id="tbody">
+			</tbody>
+			
+		</table>	
+
+</center>		
 </body>
 </html>
