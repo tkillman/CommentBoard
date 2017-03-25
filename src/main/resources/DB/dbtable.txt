@@ -34,6 +34,6 @@ create table b_comment(
 	reg_date date not null,			-- 날짜
 	ip varchar2(20) not null,		-- ip
 	comment_num number not null 		-- 댓글의 글번호	
-)
+);
 
-
+create sequence b_comment_squence;
