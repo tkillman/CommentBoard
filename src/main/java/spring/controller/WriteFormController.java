@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.Dao.BoardDao;
-import spring.Dto.RecordCommand;
 import spring.Dto.WriteFormCommand;
 
 
@@ -53,20 +52,7 @@ public class WriteFormController {
 		}
 		
 		
-		return "writeForm";
+		return "list";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

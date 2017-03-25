@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="comment">
+
+<insert id="insert" parameterType="spring.Dto.CommentCommand">
+
+insert into b_comment values(#{content_num},#{commenter},#{commentt},#{passwd},#{reg_date},#{ip},b_comment_squence.nextval)
+</insert>
+
+<select id="getList" resultType="spring.Dto.CommentCommand">
+select commenter, commentt, ip  from b_comment 
+</select>
+
+
+</mapper>

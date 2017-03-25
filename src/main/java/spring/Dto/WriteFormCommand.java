@@ -17,10 +17,19 @@ public class WriteFormCommand {
 	private String passwd;
 	private Date reg_date;
 	private String ip;
+	private int readcount;
 	
 	
 	
 	
+	
+	
+	public int getReadcount() {
+		return readcount;
+	}
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
+	}
 	public Date getReg_date() {
 		return reg_date;
 	}

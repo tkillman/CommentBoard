@@ -15,6 +15,10 @@
 <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 </bean>
 
+<bean name="commentDao" class="spring.Dao.CommentDao">
+<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+</bean>
+
 
 <!-- 뷰 리졸버 -->
 <bean name="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -23,5 +23,17 @@ create table board(
 	
 	
 	);
-	
+------------------------------------------------------	
 	create sequence board_num;
+--------------------------------------
+create table b_comment(
+	content_num number not null,		
+	commenter varchar2(20) not null,	-- 게시글의 글번호
+	commentt varchar2(200) not null,	-- 댓글
+	passwd varchar2(20) not null,		-- 비번
+	reg_date date not null,			-- 날짜
+	ip varchar2(20) not null,		-- ip
+	comment_num number not null 		-- 댓글의 글번호	
+)
+
+
