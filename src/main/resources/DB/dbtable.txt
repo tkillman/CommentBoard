@@ -1,3 +1,8 @@
+drop table board;
+drop sequence board_num;
+drop table table b_comment;
+drop sequence b_comment_squence;
+
 create table board(
 	num number not null primary key, --±Û¹øÈ£
 	writer varchar2(10) not null,  
