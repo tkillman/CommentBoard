@@ -11,7 +11,7 @@
 <link href="source/style.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
-	
+
 	$(function() {
 		//처음 로드될 때 ajax로 보여줄 페이지
 		replyRequest(1);
@@ -54,7 +54,6 @@ function insertReply(){
 	var url = "comment.do";
 	var data = $('#formId').serialize();
 	
-	
 	$.ajax({
 		type : "POST",
 		url : url,
@@ -71,9 +70,6 @@ function insertReply(){
 }	
 
 </script>
-
-
-
 </style>
 </head>
 
@@ -105,15 +101,17 @@ function insertReply(){
 				<td align="left" width="375" colspan="3"><pre>${article.content}</pre></td>
 			</tr>
 			<tr height="30">
-				<td colspan="4" bgcolor="${value_c}" align="right"><input
-					type="button" value="글수정"
-					onclick="document.location.href='/MVC_board/MVC/updateForm.do?num=${article.num}&pageNum=${pageNum}'">
-					&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="글삭제"
-					onclick="document.location.href='/MVC_board/MVC/deleteForm.do?num=${article.num}&pageNum=${pageNum}'">
-					&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="답글쓰기"
-					onclick="document.location.href='/MVC_board/MVC/writeForm.do?num=${article.num}&ref=${article.ref}&re_step=${article.re_step}&re_level=${article.re_level}'">
-					&nbsp;&nbsp;&nbsp;&nbsp; <input type="button" value="글목록"
-					onclick="document.location.href='list.do?pageNum=${pageNum}'">
+				<td colspan="4" bgcolor="${value_c}" align="right">
+				<input type="button" value="글수정"
+					onclick="">
+					&nbsp;&nbsp;&nbsp;&nbsp; 
+				<input type="button" value="글삭제"onclick="">
+					&nbsp;&nbsp;&nbsp;&nbsp; 
+				<input type="button" value="답글쓰기"
+					onclick="">
+					&nbsp;&nbsp;&nbsp;&nbsp; 
+				<input type="button" value="글목록"
+					onclick="">
 				</td>
 			</tr>
 
@@ -135,10 +133,7 @@ function insertReply(){
 
 			</form:form>
 			
-		
-			<tbody id='tbody'>
-					
-			</tbody>
+			<tbody id='tbody'></tbody>
 			
 		</table>	
 

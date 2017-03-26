@@ -9,17 +9,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="source/style.css" rel="stylesheet" type="text/css">
-
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="script.js"></script>
-<script type="text/javascript">
-hello()
-</script>
+
 </head>
 <body bgcolor="${bodyback_c}"> 
 <center><b>글쓰기</b>
 <br>
 
-<form:form id="writeform" commandName="writeFormCommand" onsubmit="return writeSave()">
+<form:form commandName="writeFormCommand" onsubmit="return writeSave()">
 
 <form:hidden path="num" value="0"/>
 <form:hidden path="ref" value="0"/>
@@ -36,7 +34,7 @@ hello()
    <tr>
     <td  width="70"  bgcolor="${value_c}" align="center">이 름</td>
     <td  width="330">
-       <form:input id="writer" path="writer" size="10" maxlength="10"/></td>
+       <form:input path="writer" size="10" maxlength="10"/></td>
   </tr>
   <tr>
     <td  width="70"  bgcolor="${value_c}" align="center" >제 목</td>
