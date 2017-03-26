@@ -136,16 +136,8 @@ function insertReply(){
 			</form:form>
 			
 		
-			
-			<tr><td colspan="5">코멘트 목록<br></td></tr>
-			
 			<tbody id='tbody'>
-			<c:forEach var="co" items="${commentCommands}">
-			<tr>
-			<td colspan='2'>작성자 : ${co.commenter}</td><td colspan='3' align="right"> 아이피 : ${co.ip}</td>
-			</tr>
-			<tr><td colspan='5'> 코멘트 내용 : ${co.commentt}</td></tr>
-			</c:forEach>			
+					
 			</tbody>
 			
 		</table>	

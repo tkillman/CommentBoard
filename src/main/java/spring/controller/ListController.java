@@ -96,7 +96,7 @@ public class ListController {
 		//내가 설정해서 페이지에 보여줄 페이징블럭 갯수
 		int pageBlock=3;
 		
-		int result= pageNum/(pageBlock+1);
+		int result= (pageNum-1)/pageBlock;
 		int startPage = result * pageBlock +1 ;
 		int endPage = startPage + pageBlock -1 ; 
 		

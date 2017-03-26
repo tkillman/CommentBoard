@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<tr><td colspan="5">코멘트 목록(전체 수 : ${commentCount})<br></td></tr>
+
 <c:forEach var="com" items="${list}">
 			<tr>
 			<td colspan='2'>작성자 : ${com.commenter}</td>
@@ -15,12 +17,12 @@
 <c:if test="${commentCount > 0}">
 <tr><td colspan="6" align="center">           
    <c:if test="${commentStartPage > commentPageBlock}">
-        <%-- <a href="comment.do?commentPageNum=${commentStartPage - commentPageBlock}">[이전]</a> --%>
+      
         <a onclick="replyRequest(${commentStartPage - commentPageBlock})">[이전]</a>
    </c:if>
 
    <c:forEach var="i" begin="${commentStartPage}" end="${commentEndPage}">
-       <%-- <a href="comment.do?commentPageNum=${i}">[${i}]</a> --%>
+      
        <a onclick="replyRequest(${i})">
        
        <c:if test="${ i== commentPageNum}">
@@ -34,8 +36,9 @@
    </c:forEach>
 
    <c:if test="${commentEndPage < commentPageCount}">
-        <%-- <a href="comment.do?commentPageNum=${commentStartPage + commentPageBlock}">[다음]</a> --%>
+      
         <a onclick="replyRequest(${commentStartPage + commentPageBlock})">[다음]</a>
+        
    </c:if>
 </td></tr>   
 </c:if>

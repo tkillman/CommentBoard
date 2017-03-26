@@ -45,14 +45,12 @@ public class WriteFormController {
 		writeFormCommand.setReg_date(new Timestamp(System.currentTimeMillis()));
 		writeFormCommand.setIp(request.getRemoteAddr());
 		
-		int resultNum =dao.insertRecord(writeFormCommand);
-		
-		if(resultNum==1){
-			System.out.println("디비 저장완료");
-		}
-		
+		dao.insertRecord(writeFormCommand);
 		
 		return "redirect:/list.do";
+		
+		
 	}
+	
 	
 }
