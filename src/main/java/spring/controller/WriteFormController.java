@@ -52,7 +52,7 @@ public class WriteFormController {
 		}
 		
 		
-		return "list";
+		return "redirect:/list.do";
 	}
 	
 }

@@ -5,21 +5,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="comment">
 
+<select id="count" resultType="int">
+
+select count(*) from b_comment
+
+</select>
+
+
 <insert id="insert" parameterType="spring.Dto.CommentCommand">
 
 insert into b_comment values(#{content_num},#{commenter},#{commentt},#{passwd},#{reg_date},#{ip},b_comment_squence.nextval)
 </insert>
 
-<select id="getList" resultType="spring.Dto.CommentCommand">
-
-select commenter, commentt, ip
+<select id="getList" parameterType="spring.Dto.CommentNumbers"  resultType="spring.Dto.CommentCommand">
+select *
 from
 (
-select rowNum as r ,commenter, commentt, ip 
+select comment_num,commenter, commentt, reg_date,rowNum as r
+from
+(
+select comment_num,commenter, commentt, reg_date 
 from b_comment 
 order by comment_num desc
 )V
-order by V.r desc 
+)T
+where T.r between #{commentStartRow} and #{commentEndRow}
+
 </select>
 
 

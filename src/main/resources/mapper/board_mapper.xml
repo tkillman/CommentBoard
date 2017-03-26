@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id="insert" parameterType="spring.Dto.WriteFormCommand">
 insert into board values(board_num.nextval 
 ,#{writer},#{email},#{subject},#{passwd},#{reg_date}
-, default,#{ref},#{re_step},#{re_level},#{content},#{ip})
+, default,board_num.nextval,#{re_step},#{re_level},#{content},#{ip})
 </insert>
 
 <select id="listGet" parameterType="list" resultType="spring.Dto.WriteFormCommand">

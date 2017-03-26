@@ -10,7 +10,7 @@ create table board(
 	subject varchar2(50) not null,
 	passwd varchar2(12) not null,
 	reg_date date not null,  
-	readcount number default 0,--조회수 // null +1 은 null 이 된다.
+	readcount number default 0, --조회수 -- null +1 은 null 이 된다.
 
 	--글의 정렬 순서를 위해
 	ref number not null,--글의 그룹번호 -- 글 번호를 따라간다.

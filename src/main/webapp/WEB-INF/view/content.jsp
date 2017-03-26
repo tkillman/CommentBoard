@@ -4,43 +4,72 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ include file="color.jspf"%>
 
+<!DOCTYPE html>
 <html>
 <head>
 <title>게시판</title>
 <link href="source/style.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
+	
 	$(function() {
-
+		//처음 로드될 때 ajax로 보여줄 페이지
+		replyRequest(1);
+		
+		//이벤트 등록
 		$('#btn').on('click',function() {
-
-			var url = "comment.do";
-			var data = $('#formId').serialize();
-
-			$.ajax({
-				type : "post",
-				url : url,
-				data : data,
-				
-				success : function(arg) {
-					//console.log(arg.list);
-					$('#commentt').val("");
-					$('#commenter').val("");
-					$('#passwd').val("");
-					$('#tbody tr').remove();
-					
-					
-					$('#tbody').html(arg)
-					
-					
-					
-				}
-
-			})
-
+			
+			insertReply();
+	
 		})
 
 	});
+	
+function replyRequest(commentPageNum){
+	
+	var url = "comment.do";
+	var data ='commentPageNum='+commentPageNum;
+	
+	$.ajax({
+		type : "GET",
+		url : url,
+		data : data,
+		
+		success : function(arg) {
+			//console.log(arg.list);
+			$('#commentt').val("");
+			$('#commenter').val("");
+			$('#passwd').val("");
+			$('#tbody tr').remove();
+			$('#tbody').html(arg)
+			
+		}
+
+	})
+	
+}	
+
+function insertReply(){
+	
+	var url = "comment.do";
+	var data = $('#formId').serialize();
+	
+	
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : data,
+		success : function(arg) {
+			//console.log(arg.list);
+			$('#commentt').val("");
+			$('#commenter').val("");
+			$('#passwd').val("");
+			$('#tbody tr').remove();
+			replyRequest(1);
+		}
+	})
+}	
+
 </script>
 
 
@@ -64,8 +93,8 @@
 				<td align="center" width="125" bgcolor="${value_c}">작성자</td>
 				<td align="center" width="125" align="center">${article.writer}</td>
 				<td align="center" width="125" bgcolor="${value_c}">작성일</td>
-				<td align="center" width="125" align="center"><fmt:formatDate
-						value="${article.reg_date}" pattern="yyyy-MM-dd" /></td>
+				<td align="center" width="125" align="center">
+				<fmt:formatDate value="${article.reg_date}" pattern="yyyy-MM-dd" /></td>
 			</tr>
 			<tr height="30">
 				<td align="center" width="125" bgcolor="${value_c}">글제목</td>
@@ -109,10 +138,11 @@
 		
 			
 			<tr><td colspan="5">코멘트 목록<br></td></tr>
+			
 			<tbody id='tbody'>
 			<c:forEach var="co" items="${commentCommands}">
 			<tr>
-			<td colspan='2'>작성자 : ${co.commenter}</td><td colspan='3' style="text-align: 'right';"> 아이피 : ${co.ip}</td>
+			<td colspan='2'>작성자 : ${co.commenter}</td><td colspan='3' align="right"> 아이피 : ${co.ip}</td>
 			</tr>
 			<tr><td colspan='5'> 코멘트 내용 : ${co.commentt}</td></tr>
 			</c:forEach>			
