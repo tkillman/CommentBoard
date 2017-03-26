@@ -22,18 +22,12 @@ public class ContentController {
 	@Autowired
 	private BoardDao dao;
 	
-	@Autowired
-	private CommentDao cDao;
 	
 	public void setDao(BoardDao dao) {
 		this.dao = dao;
 	}
 	
 	
-	public void setcDao(CommentDao cDao) {
-		this.cDao = cDao;
-	}
-
 
 
 
@@ -43,21 +37,13 @@ public class ContentController {
 		return new CommentCommand();
 		
 	}
-	
-	@ModelAttribute("commentCommands")
-	public List<CommentCommand> CommentCommandsMake(){
-		List<CommentCommand> commentCommands = cDao.selectList();
-		return commentCommands;
 		
-	}
-	
-	
 	
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String contentForm(@RequestParam("num") int num
-							, @RequestParam(value="pageNum", defaultValue="1") int pageNum
-							, @RequestParam(value="searchValue",defaultValue="" ) String searchValue
+	public String contentForm(@RequestParam("num") int num 
+							, @RequestParam(value="pageNum", defaultValue="1") int pageNum 
+							, @RequestParam(value="searchValue",defaultValue="" ) String searchValue 
 							, @RequestParam(value="selectName",defaultValue="") String selectName
 							,Model model){
 		
