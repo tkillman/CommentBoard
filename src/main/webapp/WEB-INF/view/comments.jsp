@@ -4,8 +4,26 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
+<tr><td>
 
+		<form:form id="formId" commandName="commentCommand">
+				<form:hidden path="content_num" value="${article.num}" />
+				<form:hidden path="comment_num" value="${comment_num}" />
 
+				<tr bgcolor="${value_c}">
+					<td colspan="2">코멘트 작성</td>
+					<td><form:textarea path="commentt" rows="6" cols="40" /></td>
+
+					<td align="center">작성자<br> 
+					<form:input path="commenter" size="10" /> <br> 비밀번호<br> 
+					<form:password path="passwd" size="10" />
+						
+							<input type="button" id="btn" value="코멘트달기" /></td>
+				</tr>
+
+			</form:form>
+
+</td></tr>
 <tr><td colspan="5">코멘트 목록(전체 수 : ${commentCount})<br></td></tr>
 
 <c:forEach var="com" items="${list}">

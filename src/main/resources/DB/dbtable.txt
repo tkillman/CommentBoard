@@ -25,9 +25,10 @@ create table board(
 	--BLOB , CLOB 바이너리 데이터 저장 가능. 
 	
 	ip varchar2(20) not null
-	
+	 
 	
 	);
+	
 ------------------------------------------------------	
 	create sequence board_num;
 --------------------------------------

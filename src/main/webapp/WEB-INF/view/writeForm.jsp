@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <link href="source/style.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="source/script.js"></script>
 
 </head>
 <body bgcolor="${bodyback_c}"> 
