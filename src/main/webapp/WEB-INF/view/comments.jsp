@@ -1,6 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
+
 
 <tr><td colspan="5">코멘트 목록(전체 수 : ${commentCount})<br></td></tr>
 
@@ -16,12 +20,12 @@
 
 <c:if test="${commentCount > 0}">
 <tr><td colspan="6" align="center">           
-   <c:if test="${commentStartPage > commentPageBlock}">
+   <c:if test="${startPage > wantPageBlock}">
       
-        <a onclick="replyRequest(${commentStartPage - commentPageBlock})">[이전]</a>
+        <a onclick="replyRequest(${startPage - wantPageBlock})">[이전]</a>
    </c:if>
 
-   <c:forEach var="i" begin="${commentStartPage}" end="${commentEndPage}">
+   <c:forEach var="i" begin="${startPage}" end="${endPage}">
       
        <a onclick="replyRequest(${i})">
        
@@ -35,9 +39,9 @@
        </a>
    </c:forEach>
 
-   <c:if test="${commentEndPage < commentPageCount}">
+   <c:if test="${endPage < blockCount}">
       
-        <a onclick="replyRequest(${commentStartPage + commentPageBlock})">[다음]</a>
+        <a onclick="replyRequest(${startPage + wantPageBlock})">[다음]</a>
         
    </c:if>
 </td></tr>   

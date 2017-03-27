@@ -15,20 +15,20 @@ public class CommentDao extends SqlSessionDaoSupport {
 
 	}
 
-	public List<CommentCommand> selectList(int commentStartRow, int commentEndRow) {
+	public List<CommentCommand> selectList(int commentStartRow, int commentEndRow,int content_num) {
 		CommentNumbers numbers = new CommentNumbers();
 		numbers.setCommentStartRow(commentStartRow);
 		numbers.setCommentEndRow(commentEndRow);
-		
+		numbers.setContent_num(content_num); 
 		
 		List<CommentCommand> commentCommands = getSqlSession().selectList("comment.getList",numbers);
 		
 		return commentCommands;
 	}
 
-	public int counting(){
+	public int counting(int content_num){
 		
-		int resultNum = getSqlSession().selectOne("comment.count");
+		int resultNum = getSqlSession().selectOne("comment.count",content_num);
 			return resultNum;	
 	}
 }

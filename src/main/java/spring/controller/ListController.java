@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import spring.Dao.BoardDao;
 import spring.Dto.Numbers;
 import spring.Dto.WriteFormCommand;
+import spring.util.PageingUtil;
 
 @Controller
 public class ListController {
@@ -35,7 +36,6 @@ public class ListController {
         	//count = dbPro.getArticleCount(request.getParameter("selectName"),searchValue);
         } else{
         count = dao.getArticleCount();//전체 글의 수
-      
         model.addAttribute("count", count);
         }
        
@@ -82,32 +82,10 @@ public class ListController {
 		model.addAttribute("pageNum", pageNum);
 		
 		
-		paging(model,count,pageSize,pageNum);
+		PageingUtil.pageing(model,count,pageSize,pageNum,3);
 		return "list";
 	}
 	
 	//페이징 처리 ,(전체 글수,한 페이지에 보여줄 글 갯수, 현재 보고있는 페이징번호)
-	public void paging(Model model,int count,int pageSize,int pageNum){
 		
-		int pageCount= count / pageSize + ( count % pageSize == 0 ? 0 : 1);
-		model.addAttribute(pageCount);
-		
-		
-		//내가 설정해서 페이지에 보여줄 페이징블럭 갯수
-		int pageBlock=3;
-		
-		int result= (pageNum-1)/pageBlock;
-		int startPage = result * pageBlock +1 ;
-		int endPage = startPage + pageBlock -1 ; 
-		
-		if(endPage>pageCount){
-			//계산된 값이 실제 값보다 많은 경우
-			endPage = pageCount;
-		}
-		
-		model.addAttribute("startPage",startPage);
-		model.addAttribute("endPage",endPage);
-		
-	}
-	
 }

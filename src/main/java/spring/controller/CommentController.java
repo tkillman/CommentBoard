@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.Dao.CommentDao;
 import spring.Dto.CommentCommand;
+import spring.util.PageingUtil;
 
 @Controller
 @RequestMapping("/comment.do")
@@ -26,16 +28,23 @@ public class CommentController {
 	public void setcDao(CommentDao cDao) {
 		this.cDao = cDao;
 	}
+	
+	@ModelAttribute("commentCommand")
+	public CommentCommand commentCommandmake(){
+		return new CommentCommand();
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String replyRequet(HttpServletResponse response,
-			@RequestParam(value = "commentPageNum", defaultValue = "1") int commentPageNum, Model model) {
+			@RequestParam(value = "commentPageNum", defaultValue = "1") int commentPageNum
+			,@RequestParam("content_num") int content_num 
+			,Model model) {
 
 		response.setContentType("text/html;charset=UTF-8");
 		
 		model.addAttribute("commentPageNum", commentPageNum);
 		// 코멘트 갯수 파악
-		int commentCount = cDao.counting();
+		int commentCount = cDao.counting(content_num);
 		
 		model.addAttribute("commentCount", commentCount);
 
@@ -52,7 +61,7 @@ public class CommentController {
 		// 코멘트 리스트 보내주기
 
 		if (commentCount > 0) {
-			List<CommentCommand> list = cDao.selectList(commentStartRow, commentEndRow);
+			List<CommentCommand> list = cDao.selectList(commentStartRow, commentEndRow,content_num);
 
 			model.addAttribute("list", list);
 
@@ -60,10 +69,9 @@ public class CommentController {
 			return "comments";
 		}
 
-		pageing(model, commentCount, commentPageSize, commentPageNum);
+		PageingUtil.pageing(model, commentCount, commentPageSize, commentPageNum,3);
 		return "comments";
 	}
-
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String insertReplyRequet(HttpServletRequest request, HttpServletResponse response,
@@ -78,38 +86,6 @@ public class CommentController {
 		cDao.insertComment(commentCommand);
 
 		return "comments";
-
-	}
-
-	public void pageing(Model model, int commentCount, int commentPageSize, int commentPageNum) {
-		
-		
-		int commentPageCount = commentCount / commentPageSize + (commentCount % commentPageSize == 0 ? 0 : 1);
-		
-		model.addAttribute("commentPageCount",commentPageCount);
-
-		int commentPageBlock = 3;
-
-		
-		int result = (commentPageNum -1) / commentPageBlock;
-		int commentStartPage = result * commentPageBlock + 1;
-		int commentEndPage = commentStartPage + commentPageBlock - 1;
-
-		
-		if (commentEndPage > commentPageCount) {
-			// 계산된 값이 실제 값보다 많은 경우
-			commentEndPage = commentPageCount;
-			
-		}
-		
-		
-		model.addAttribute("commentPageCount", commentPageCount);
-		
-		
-		model.addAttribute("commentPageBlock", commentPageBlock);
-		
-		model.addAttribute("commentStartPage", commentStartPage);
-		model.addAttribute("commentEndPage", commentEndPage);
 
 	}
 

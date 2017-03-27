@@ -20,15 +20,13 @@
 		$('#btn').on('click',function() {
 			
 			insertReply();
-	
 		})
-
 	});
 	
 function replyRequest(commentPageNum){
 	
 	var url = "comment.do";
-	var data ='commentPageNum='+commentPageNum;
+	var data ='commentPageNum='+commentPageNum+'&content_num='+${article.num};
 	
 	$.ajax({
 		type : "GET",
@@ -41,15 +39,28 @@ function replyRequest(commentPageNum){
 			$('#commenter').val("");
 			$('#passwd').val("");
 			$('#tbody tr').remove();
-			$('#tbody').html(arg)
-			
+			$('#tbody').html(arg)	
 		}
-
 	})
 	
 }	
 
 function insertReply(){
+	
+	if($('#commentt').val() == ""){
+		alert('코멘트를 입력해주세요.')
+		return false;
+	}
+	
+	if($('#commenter').val() == ""){
+		alert('작성자를 입력해주세요.')
+		return false;
+	}
+	
+	if($('#passwd').val() == ""){
+		alert('비밀번호를 입력해주세요.')
+		return false;
+	}
 	
 	var url = "comment.do";
 	var data = $('#formId').serialize();
@@ -103,19 +114,19 @@ function insertReply(){
 			<tr height="30">
 				<td colspan="4" bgcolor="${value_c}" align="right">
 				<input type="button" value="글수정"
-					onclick="">
+					onclick="alert('미구현')">
 					&nbsp;&nbsp;&nbsp;&nbsp; 
-				<input type="button" value="글삭제"onclick="">
+				<input type="button" value="글삭제"onclick="alert('미구현')">
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 				<input type="button" value="답글쓰기"
-					onclick="">
+					onclick="alert('미구현')">
 					&nbsp;&nbsp;&nbsp;&nbsp; 
 				<input type="button" value="글목록"
-					onclick="">
+					onclick="document.location.href='list.do?pageNum=${pageNum}'">
 				</td>
 			</tr>
-
-
+			
+				
 			<form:form id="formId" commandName="commentCommand">
 				<form:hidden path="content_num" value="${article.num}" />
 				<form:hidden path="comment_num" value="${comment_num}" />
@@ -124,14 +135,15 @@ function insertReply(){
 					<td colspan="2">코멘트 작성</td>
 					<td><form:textarea path="commentt" rows="6" cols="40" /></td>
 
-					<td align="center">작성자<br> <form:input
-							path="commenter" size="10" /> <br> 비밀번호<br> <form:password
-							path="passwd" size="10" />
+					<td align="center">작성자<br> 
+					<form:input path="commenter" size="10" /> <br> 비밀번호<br> 
+					<form:password path="passwd" size="10" />
 						
 							<input type="button" id="btn" value="코멘트달기" /></td>
 				</tr>
 
 			</form:form>
+			
 			
 			<tbody id='tbody'></tbody>
 			

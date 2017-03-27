@@ -5,9 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="comment">
 
-<select id="count" resultType="int">
+<select id="count" parameterType="int"  resultType="int">
 
-select count(*) from b_comment
+select count(*) from b_comment where content_num = #{content_num}
 
 </select>
 
@@ -26,6 +26,7 @@ from
 (
 select comment_num,commenter, commentt, reg_date 
 from b_comment 
+where content_num = #{content_num}
 order by comment_num desc
 )V
 )T

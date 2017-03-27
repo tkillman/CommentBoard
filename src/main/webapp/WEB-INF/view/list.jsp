@@ -80,22 +80,35 @@
 
 
 <c:if test="${count > 0}">
-   
-         
-   <c:if test="${startPage > 10}">
-        <a href="list.do?pageNum=${startPage - 10 }">[이전]</a>
+           
+   <c:if test="${startPage >wantPageBlock}">
+      
+        <a href="list.do?pageNum=${startPage - wantPageBlock}">[이전]</a>
    </c:if>
 
    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-       <a href="list.do?pageNum=${i}&searchValue=${searchValue}&selectName=${selectName}">[${i}]</a>
+      
+       <a href="list.do?pageNum=${i}">
+       
+       <c:if test="${ i== pageNum}">
+       <b>[${i}]</b>
+       </c:if>
+       <c:if test="${ i != pageNum}">
+       [${i}]
+       </c:if>
+       
+       </a>
    </c:forEach>
 
-   <c:if test="${endPage < pageCount}">
-        <a href="list.do?pageNum=${startPage + 10}">[다음]</a>
+   <c:if test="${endPage < blockCount}">
+      
+        <a href="list.do?pageNum=${startPage + wantPageBlock}">[다음]</a>
+        
    </c:if>
+</td></tr>   
 </c:if>
 
-<form action="" method="get">
+<form action="" method="get" onsubmit="alert('미구현')">
 <select name="selectName">
 <option value="subject">제목</option>
 <option value="writer">작성자</option>

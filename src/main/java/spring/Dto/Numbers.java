@@ -4,6 +4,8 @@ public class Numbers {
 	
 	private int startRow;
 	private int endRow;
+	
+
 	public int getStartRow() {
 		return startRow;
 	}

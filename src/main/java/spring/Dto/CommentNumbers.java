@@ -5,7 +5,16 @@ public class CommentNumbers {
 
 	private int commentStartRow;
 	private int commentEndRow;
+	private int content_num;
 	
+	
+	
+	public int getContent_num() {
+		return content_num;
+	}
+	public void setContent_num(int content_num) {
+		this.content_num = content_num;
+	}
 	public int getCommentStartRow() {
 		return commentStartRow;
 	}
