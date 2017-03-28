@@ -11,7 +11,7 @@ insert into board values(board_num.nextval
 , default,board_num.nextval,#{re_step},#{re_level},#{content},#{ip})
 </insert>
 
-<select id="listGet" parameterType="list" resultType="spring.Dto.WriteFormCommand">
+<select id="listGet" parameterType="map" resultType="spring.Dto.WriteFormCommand">
 select num,writer,email,subject,passwd,reg_date,ref,re_step,re_level,content,ip,readcount 
 from (
 select num,writer,email,subject,passwd,reg_date,ref,re_step,re_level,content,ip,readcount,rownum r

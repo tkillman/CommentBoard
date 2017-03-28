@@ -1,11 +1,12 @@
 package spring.Dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
 import spring.Dto.CommentCommand;
-import spring.Dto.CommentNumbers;
 
 public class CommentDao extends SqlSessionDaoSupport {
 
@@ -16,10 +17,10 @@ public class CommentDao extends SqlSessionDaoSupport {
 	}
 
 	public List<CommentCommand> selectList(int commentStartRow, int commentEndRow,int content_num) {
-		CommentNumbers numbers = new CommentNumbers();
-		numbers.setCommentStartRow(commentStartRow);
-		numbers.setCommentEndRow(commentEndRow);
-		numbers.setContent_num(content_num); 
+		Map<String, Integer> numbers = new HashMap<>();
+		numbers.put("commentStartRow", commentStartRow);
+		numbers.put("commentEndRow",commentEndRow);
+		numbers.put("content_num", content_num);
 		
 		List<CommentCommand> commentCommands = getSqlSession().selectList("comment.getList",numbers);
 		

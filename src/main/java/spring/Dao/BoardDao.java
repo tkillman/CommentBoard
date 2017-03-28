@@ -1,11 +1,10 @@
 package spring.Dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
-import spring.Dto.CommentCommand;
-import spring.Dto.Numbers;
 import spring.Dto.WriteFormCommand;
 
 public class BoardDao extends SqlSessionDaoSupport{
@@ -19,8 +18,10 @@ public class BoardDao extends SqlSessionDaoSupport{
 		return resultNum;
 	}
 	
-	public List<WriteFormCommand> getList(Numbers numbers){
-		List<WriteFormCommand> writeFormCommands = getSqlSession().selectList("board.listGet", numbers);
+	public List<WriteFormCommand> getList(Map<String, Integer> map){
+		
+		
+		List<WriteFormCommand> writeFormCommands = getSqlSession().selectList("board.listGet", map);
 		return writeFormCommands;
 		
 	}

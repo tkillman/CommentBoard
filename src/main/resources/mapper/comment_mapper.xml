@@ -17,7 +17,7 @@ select count(*) from b_comment where content_num = #{content_num}
 insert into b_comment values(#{content_num},#{commenter},#{commentt},#{passwd},#{reg_date},#{ip},b_comment_squence.nextval)
 </insert>
 
-<select id="getList" parameterType="spring.Dto.CommentNumbers"  resultType="spring.Dto.CommentCommand">
+<select id="getList" parameterType="map"  resultType="spring.Dto.CommentCommand">
 select *
 from
 (

@@ -56,10 +56,6 @@
 				</td>
 			</tr>
 			
-				
-	
-			
-			
 			<tbody id='tbody'></tbody>
 			
 		</table>	
@@ -81,63 +77,70 @@
 			
 			insertReply();
 		})
+	
+		function replyRequest(commentPageNum){
+			
+			var url = "comment.do";
+			var data ='commentPageNum='+commentPageNum+'&content_num='+${article.num};
+			
+			$.ajax({
+				type : "GET",
+				url : url,
+				data : data,
+				
+				success : function(arg) {
+					//console.log(arg.list);
+					$('#commentt').val("");
+					$('#commenter').val("");
+					$('#passwd').val("");
+					$('#tbody tr').remove();
+					$('#tbody').html(arg)	
+				}
+			})
+			
+		} //replyRequest(commentPageNum)	
+
+		function insertReply(){
+			
+			if($('#commentt').val() == ""){
+				alert('코멘트를 입력해주세요.')
+				return false;
+			}
+			
+			if($('#commenter').val() == ""){
+				alert('작성자를 입력해주세요.')
+				return false;
+			}
+			
+			if($('#passwd').val() == ""){
+				alert('비밀번호를 입력해주세요.')
+				return false;
+			}
+			
+			var url = "comment.do";
+			var data = 'commentt='+$('#commentt').val()+
+					   '&commenter='+$('#commenter').val()+	
+						'&passwd='+$('#passwd').val()+
+						'&commentPageNum='+'1'+
+						'&content_num='+${article.num}
+
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : data,
+				success : function(arg) {
+					//console.log(arg.list);
+					$('#commentt').val("");
+					$('#commenter').val("");
+					$('#passwd').val("");
+					$('#tbody tr').remove();
+					replyRequest(1);
+				}
+			})
+		}	//insertReply()
+	
 	});
 	
-function replyRequest(commentPageNum){
-	
-	var url = "comment.do";
-	var data ='commentPageNum='+commentPageNum+'&content_num='+${article.num};
-	
-	$.ajax({
-		type : "GET",
-		url : url,
-		data : data,
-		
-		success : function(arg) {
-			//console.log(arg.list);
-			$('#commentt').val("");
-			$('#commenter').val("");
-			$('#passwd').val("");
-			$('#tbody tr').remove();
-			$('#tbody').html(arg)	
-		}
-	})
-	
-}	
 
-function insertReply(){
-	
-	if($('#commentt').val() == ""){
-		alert('코멘트를 입력해주세요.')
-		return false;
-	}
-	
-	if($('#commenter').val() == ""){
-		alert('작성자를 입력해주세요.')
-		return false;
-	}
-	
-	if($('#passwd').val() == ""){
-		alert('비밀번호를 입력해주세요.')
-		return false;
-	}
-	
-	var url = "comment.do";
-	var data = $('#formId').serialize();
-	
-	$.ajax({
-		type : "POST",
-		url : url,
-		data : data,
-		success : function(arg) {
-			//console.log(arg.list);
-			$('#commentt').val("");
-			$('#commenter').val("");
-			$('#passwd').val("");
-			$('#tbody tr').remove();
-			replyRequest(1);
-		}
-	})
-}	
 
 </script>

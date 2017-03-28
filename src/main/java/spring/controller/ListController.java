@@ -1,6 +1,8 @@
 package spring.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.Dao.BoardDao;
-import spring.Dto.Numbers;
 import spring.Dto.WriteFormCommand;
 import spring.util.PageingUtil;
 
@@ -58,9 +59,10 @@ public class ListController {
           	  System.out.println("searchValue가 있을 때 구현할 공간");
              
              }else{
-             	Numbers numbers = new Numbers();
-             	numbers.setStartRow(startRow);
-             	numbers.setEndRow(endRow);
+             	Map<String, Integer> numbers = new HashMap<>();
+            	numbers.put("startRow", startRow);
+            	numbers.put("endRow", endRow);
+             	
              	List<WriteFormCommand> writeFormCommands = dao.getList(numbers);		
      			model.addAttribute("articleList", writeFormCommands);
      		
