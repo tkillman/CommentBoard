@@ -4,5 +4,6 @@
 
 <a href="list.do">list</a>
 
+<input type="file">
 </body>
 </html>
