@@ -50,8 +50,8 @@ public class EmailAuth {
 	
 	public void sendEmail(String email, String authNum){
 		String host = "smtp.naver.com";
-		final String user = ""; //이메일 아이디
-		final String password= "!"; //이메일 비밀번호
+		final String user = "timekillman"; //이메일 아이디
+		final String password= "bstar28700!"; //이메일 비밀번호
 		String to = email;
 				
 				
