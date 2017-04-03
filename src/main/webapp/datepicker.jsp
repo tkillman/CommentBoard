@@ -95,6 +95,7 @@ $(function() {
 });
 </script>
 
+<input type="text" id="testDatepicker">
 
 
 <input type="text" id="date1"><br>
