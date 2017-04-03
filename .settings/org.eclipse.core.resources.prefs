@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources/DB/dbtable.txt=ms949
+<<<<<<< HEAD
 encoding//src/main/webapp/index_email.jsp=UTF-8
 encoding//src/main/webapp/map.jsp=UTF-8
+=======
+encoding//src/main/webapp/index.jsp=UTF-8
+>>>>>>> branch 'master' of https://github.com/tkillman/CommentBoard.git
 encoding//src/test/java=UTF-8
