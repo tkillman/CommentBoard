@@ -15,25 +15,76 @@
 
 jQuery(function($){
 
-    $.datepicker.regional['ko'] = {closeText: '닫기',prevText: '이전달',nextText: '다음달',currentText: '오늘',monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)','7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)'],monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],dayNames: ['일','월','화','수','목','금','토'],dayNamesShort: ['일','월','화','수','목','금','토'],dayNamesMin: ['일','월','화','수','목','금','토'],weekHeader: 'Wk',dateFormat: 'yy-mm-dd',firstDay: 0,isRTL: false,showMonthAfterYear: true,yearSuffix: ''};
+    $.datepicker.regional['ko'] = {
+    		closeText: '닫기'
+    		,prevText: '이전달'
+    		,nextText: '다음달'
+    		,currentText: '오늘'
+    		,monthNames: ['1월(JAN)','2월(FEB)','3월(MAR)','4월(APR)','5월(MAY)','6월(JUN)','7월(JUL)','8월(AUG)','9월(SEP)','10월(OCT)','11월(NOV)','12월(DEC)']
+    ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월']
+    ,dayNames: ['일','월','화','수','목','금','토']
+    ,dayNamesShort: ['일','월','화','수','목','금','토']
+    ,dayNamesMin: ['일','월','화','수','목','금','토']
+    ,weekHeader: 'Wk'
+    ,dateFormat: 'yy-mm-dd'
+    ,firstDay: 0
+    ,isRTL: false
+    ,showMonthAfterYear: true
+    ,yearSuffix: ''};
+    
 
     $.datepicker.setDefaults($.datepicker.regional['ko']);
 
-    $('#date1').datepicker(
-    		{
-    	showOn: 'both',buttonText: "달력",changeMonth: true,changeYear: true,showButtonPanel:true,yearRange: 'c-99:c+99',constrainInput: true,maxDate: '+1y',beforeShowDay: disableAllTheseDays   });
-    }
+    $('#date1').datepicker({
+    	showOn: 'both'
+    	,buttonText: "달력"
+    	,changeMonth: true
+    	,changeYear: true
+    	,showButtonPanel:true
+    	,yearRange: 'c-99:c+99'
+    	,constrainInput: true
+    	,maxDate: '+1y'
+    	,beforeShowDay: disableAllTheseDays   });
+    
 
-    $('#date2').datepicker({showOn: 'both',buttonText: "달력",changeMonth: true,changeYear: true,showButtonPanel:true,yearRange: 'c-99:c+99',constrainInput: true,maxDate: '+1y',beforeShowDay: noBefore  });
+    $('#date2').datepicker({
+    	showOn: 'both'
+    	,buttonText: "달력"
+    	,changeMonth: true
+    	,changeYear: true
+    	,showButtonPanel:true
+    	,yearRange: 'c-99:c+99'
+    	,constrainInput: true
+    	,maxDate: '+1y'
+    	,beforeShowDay: noBefore  });
+    
 
-    $('#date3').datepicker({showOn: 'both',buttonText: "달력",changeMonth: true,changeYear: true,showButtonPanel:true,yearRange: 'c-99:c+99',constrainInput: true,maxDate: '+1y',beforeShowDay: noWeekendsOrHolidays  });
+    $('#date3').datepicker({
+    	showOn: 'both'
+    	,buttonText: "달력"
+    	,changeMonth: true
+    	,changeYear: true
+    	,showButtonPanel:true
+    	,yearRange: 'c-99:c+99'
+    	,constrainInput: true
+    	,maxDate: '+1y'
+    	,beforeShowDay: noWeekendsOrHolidays  });
+    
 
-    $('#date4').datepicker({showOn: 'both',buttonText: "달력",changeMonth: true,changeYear: true,showButtonPanel:true,yearRange: 'c-99:c+99',constrainInput: true,maxDate: '+1y',beforeShowDay: noSundays });
-
+    $('#date4').datepicker({
+    	showOn: 'both'
+    	,buttonText: "달력"
+    	,changeMonth: true
+    	,changeYear: true
+    	,showButtonPanel:true
+    	,yearRange: 'c-99:c+99'
+    	,constrainInput: true
+    	,maxDate: '+1y'
+    	,beforeShowDay: noSundays });
+   
 });
 
 
-var disabledDays = ["2013-7-9","2013-7-24","2013-7-26"];
 
 
 // 주말(토, 일요일) 선택 막기
@@ -71,35 +122,33 @@ function noBefore(date){
 }
 
  
-
 // 특정일 선택막기
+var disabledDays = ["2017-4-9","2017-4-10","2017-4-26"];
 
 function disableAllTheseDays(date) {
 
-    var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+    var m = date.getMonth() 
+    , d = date.getDate()
+    , y = date.getFullYear();
 
     for (i = 0; i < disabledDays.length; i++) {
 
-        if($.inArray(y + '-' +(m+1) + '-' + d,disabledDays) != -1) {
-
+        if($.inArray(y + '-' +(m+1) + '-' + d , disabledDays) != -1) {
             return [false];
-
         }
-
     }
-
     return [true];
-
 }
+
 
 $(function() {
     $( "#testDatepicker" ).datepicker({
     });
+    
 });
 </script>
 
-<input type="text" id="testDatepicker">
-
+<input type="text" id="testDatepicker"><br> 
 
 <input type="text" id="date1"><br>
 <input type="text" id="date2"><br>
