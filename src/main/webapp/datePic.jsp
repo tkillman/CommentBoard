@@ -53,19 +53,24 @@
    /* 특정날짜들 배열*/
    var disabledDays = ["2017-4-10","2017-4-24"];
 
-   /* 특정일 선택막기*/
+   /* 특정일 선택막기 + 이전 날짜 막기*/
    function testdatepicker(date) {
-       var m = date.getMonth()
-       , d = date.getDate()
-       , y = date.getFullYear();
-       
-       for (i = 0; i < disabledDays.length; i++) {
-           if(date < new Date()||$.inArray(y + '-' +(m+1) + '-' + d,disabledDays) != -1) {
-               return [false];
-           }
-       }
-      
-       return [true];
+	  
+	   var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+	    
+	   if(disabledDays.length != 0){
+	          
+		   for (i = 0; i < disabledDays.length; i++) {
+	        	  console.log(disabledDays[i])
+	            if(date < new Date()||$.inArray(y + '-' +(m+1) + '-' + d,disabledDays) != -1) {
+	               return [false];
+	            }
+	         }
+	         return [true];
+	       } else if (date < new Date()){
+	           return [false];
+	        }
+	       return [true];
    }
    
 </script>
