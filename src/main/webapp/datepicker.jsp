@@ -132,12 +132,14 @@ function disableAllTheseDays(date) {
     , y = date.getFullYear();
 
     for (i = 0; i < disabledDays.length; i++) {
-
+		console.log( disabledDays.length)
         if($.inArray(y + '-' +(m+1) + '-' + d , disabledDays) != -1) {
             return [false];
         }
     }
+    
     return [true];
+     
 }
 
 
